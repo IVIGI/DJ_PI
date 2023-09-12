@@ -17,6 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from Ambrella.views import *
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('Ambrella/',index),
+    path('Ambrella_red/',index1),
+    path('cat/',categorieys),
 ]
