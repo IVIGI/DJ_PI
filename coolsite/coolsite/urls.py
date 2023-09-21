@@ -15,16 +15,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from Ambrella.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('Ambrella/',index),
-    path('Ambrella_red/',index1),
-    path('cat/',categorieys),
-    path('RED_EROR/',index2),
-    path('EROR/',ind),
-    path('cat1/',categorieys1)
+    path('Ambrella/ ', include('Ambrella.urls')),
+    path('cat/<int:cat_id>/',categorieys),
+    path('cat/<slug:cat>/',categorieys_slug),
 ]
