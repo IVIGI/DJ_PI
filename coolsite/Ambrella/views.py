@@ -10,3 +10,7 @@ def categorieys(request):
     return HttpResponse("<h1> статьи по категориям </h1>")
 def index1(request):
     return HttpResponse("Дополнительная страница Ambrella Код: Красный")
+def index2(request):
+    return HttpResponse("EROR-404RED")
+def ind(request):
+    return HttpResponse("EROR-404 <img src=https://i.ytimg.com/vi/X5oGiXvIhxo/maxresdefault.jpg>")

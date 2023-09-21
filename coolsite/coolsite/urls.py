@@ -24,4 +24,6 @@ urlpatterns = [
     path('Ambrella/',index),
     path('Ambrella_red/',index1),
     path('cat/',categorieys),
+    path('RED_EROR/',index2),
+    path('EROR/',ind),
 ]
