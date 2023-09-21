@@ -26,4 +26,5 @@ urlpatterns = [
     path('cat/',categorieys),
     path('RED_EROR/',index2),
     path('EROR/',ind),
+    path('cat1/',categorieys1)
 ]

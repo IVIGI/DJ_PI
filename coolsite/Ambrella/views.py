@@ -14,3 +14,5 @@ def index2(request):
     return HttpResponse("EROR-404RED")
 def ind(request):
     return HttpResponse("EROR-404 <img src=https://i.ytimg.com/vi/X5oGiXvIhxo/maxresdefault.jpg>")
+def categorieys1(request):
+    return HttpResponse("<h1> Документ №1 </h1>")
