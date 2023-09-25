@@ -21,7 +21,6 @@ from Ambrella.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('Ambrella/ ', include('Ambrella.urls')),
-    path('cat/<int:cat_id>/',categorieys),
-    path('cat/<slug:cat>/',categorieys_slug),
+    path('', include('Ambrella.urls')),
+
 ]
