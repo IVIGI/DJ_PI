@@ -1,11 +1,13 @@
 # Для хранения представления будущего приложения.
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseNotFound, Http404
+from django.shortcuts import render, redirect
 
 
 # Create your views here.
 def index(request):
-    return HttpResponse("Страница приложения Ambrella")
+    print(request.GET)
+    return HttpResponse(f"Страница приложения Ambrella ")
+
 
 def categorieys(request,cat_id):
     return HttpResponse(f"<h1> статьи под номером {cat_id} </h1>")
@@ -44,6 +46,7 @@ def spisok(request,number):
     else:
         return HttpResponse(f"<h1>Студента под номеромом {number} нет</h1>")
 def date(request,datee):
+
     dir = {
         "2001": ['Игнатьев А.А. 28.06.2001','Лелетко П. 2001'],
         "2002": ['Ковалёв А. 2002','Король Б. 2002'],
@@ -56,3 +59,14 @@ def date(request,datee):
         return HttpResponse(f"<h1> Студенты {dir[str(datee)]} найдены </h1>")
     else:
         return HttpResponse(f"<h1>Студента с таким годом {datee} нет</h1>")
+
+def year_archive(request,year):
+    if (int(year)) > 2023:
+        raise Http404()
+    if (int(year)) < 2000:
+        return redirect('home', permanent=True)
+    return HttpResponse(f"<h1> Год издания {year} </h1>")
+
+def pageNotFound (request,exception):
+    return HttpResponseNotFound(f"<h1> Страница не найдена <br> {exception}</h1>")
+

@@ -24,3 +24,5 @@ urlpatterns = [
     path('', include('Ambrella.urls')),
 
 ]
+
+handler404 = pageNotFound
