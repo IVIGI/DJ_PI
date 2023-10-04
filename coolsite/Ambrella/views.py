@@ -1,4 +1,5 @@
 # Для хранения представления будущего приложения.
+from django.contrib.sites import requests
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 from django.shortcuts import render, redirect
 
@@ -44,7 +45,7 @@ def spisok(request,number):
     if number > 0 and number < 10:
         return HttpResponse(f"<h1> Студент {dir[str(number)][0]} найден </h1>")
     else:
-        return HttpResponse(f"<h1>Студента под номеромом {number} нет</h1>")
+        return redirect('r_eror', permanent=True)
 def date(request,datee):
 
     dir = {
@@ -58,7 +59,7 @@ def date(request,datee):
     if datee > 2001 and datee < 2005:
         return HttpResponse(f"<h1> Студенты {dir[str(datee)]} найдены </h1>")
     else:
-        return HttpResponse(f"<h1>Студента с таким годом {datee} нет</h1>")
+        return redirect('eror', permanent=True)
 
 def year_archive(request,year):
     if (int(year)) > 2023:
@@ -70,3 +71,20 @@ def year_archive(request,year):
 def pageNotFound (request,exception):
     return HttpResponseNotFound(f"<h1> Страница не найдена <br> {exception}</h1>")
 
+def save_data(request):
+    if request.method == 'GET':
+        data = request.GET.get('GET', '')
+        with open('GET.txt', 'a') as file:
+            file.write(data + '\n')
+        return HttpResponse('Данные успешно записаны в файл')
+    else:
+        return HttpResponse('Метод запроса должен быть GET')
+
+def FailServer(request):
+    return HttpResponseNotFound(f"<h1> Ошибка сервера <br> </h1>")
+
+def AccessВenied(request, exception):
+    return HttpResponseNotFound(f"<h1> Запрещено в доступе <br> {exception}</h1>")
+
+def ProcessingFail(request, exception):
+    return HttpResponseNotFound(f"<h1> Неверный запрос <br> {exception}</h1>")

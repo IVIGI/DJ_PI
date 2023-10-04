@@ -19,6 +19,11 @@ from django.urls import path, include
 
 from Ambrella.views import *
 
+handler500 = 'myapp.views.handler500'
+handler403 = 'myapp.views.handler403'
+handler400 = 'myapp.views.handler400'
+handler_csrf_failure = 'myapp.views.handler_csrf_failure'
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('Ambrella.urls')),
@@ -26,3 +31,6 @@ urlpatterns = [
 ]
 
 handler404 = pageNotFound
+handler500 = FailServer
+handler403 = AccessВenied
+handler400 = ProcessingFail

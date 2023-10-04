@@ -1,7 +1,7 @@
 from django.urls import path, register_converter
+
 from Ambrella.classconverctor import  FourDigitYearConverter
 from Ambrella.views import *
-
 
 
 
@@ -9,7 +9,9 @@ from Ambrella.views import *
 register_converter(FourDigitYearConverter, "yyyy")
 
 urlpatterns = [
+
     path('',index, name='home'),
+    path('GET/', save_data, name='GET'),
     path('Ambrella_red/',index1, name='red'),
     path('RED_EROR/',index2, name='r_eror'),
     path('EROR/',ind, name='eror'),
@@ -23,3 +25,4 @@ urlpatterns = [
     path("articles/<yyyy:year>/", year_archive, name = 'year'),
 
 ]
+
