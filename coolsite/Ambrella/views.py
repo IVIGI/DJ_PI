@@ -1,5 +1,7 @@
 # Для хранения представления будущего приложения.
+from contextvars import Context
 from django.contrib.sites import requests
+from django.core.exceptions import SuspiciousOperation, PermissionDenied
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 from django.shortcuts import render, redirect
 
@@ -62,7 +64,13 @@ def date(request,datee):
         return redirect('eror', permanent=True)
 
 def year_archive(request,year):
-    if (int(year)) > 2023:
+    if (int(year)) == 2024:
+        raise SuspiciousOperation
+    if (int(year)) == 2025:
+        raise PermissionDenied
+    if (int(year)) == 2026:
+        raise Context
+    if (int(year)) > 2027:
         raise Http404()
     if (int(year)) < 2000:
         return redirect('home', permanent=True)
