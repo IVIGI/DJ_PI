@@ -4,13 +4,24 @@ from django.contrib.sites import requests
 from django.core.exceptions import SuspiciousOperation, PermissionDenied
 from django.http import HttpResponse, HttpResponseNotFound, Http404
 from django.shortcuts import render, redirect
+from django.template.defaultfilters import slugify
+from django.template.loader import render_to_string
 
 
-# Create your views here.
+
+menu = ['О сайте', 'Войти', 'Обратная связь']# Create your views here.
 def index(request):
-    print(request.GET)
-    return HttpResponse(f"Страница приложения Ambrella ")
-
+    # t = render_to_string('Ambrella/index.html')
+    # return HttpResponse(t) // Пример ниже !!!!  можно так как 1 пример, можно как ниже!
+    data = {'title': 'главная страница',
+            'menu':menu,
+            'float':23.123,
+            'value': 1,
+            'url': slugify ("OCHEN KRUTOY KURSACH")
+            }
+    return render(request,'Ambrella/index.html',context=data)
+    # // пример передачи параметра 1
+    # return render(request, 'Ambrella/index.html', {'title': 'Главная страница'})
 
 def categorieys(request,cat_id):
     return HttpResponse(f"<h1> статьи под номером {cat_id} </h1>")
