@@ -15,9 +15,17 @@ def index(request):
     # return HttpResponse(t) // Пример ниже !!!!  можно так как 1 пример, можно как ниже!
     data = {'title': 'главная страница',
             'menu':menu,
-            'float':23.123,
             'value': 1,
-            'url': slugify ("OCHEN KRUTOY KURSACH")
+            'url': slugify ("OCHEN KRUTOY KURSACH"),
+            'int': 2023,
+            'tup': [1,2.0,"hello"],
+            'bool': True,
+            'float': 28.56,
+            'list': [1, 2, 'abc', True],
+            'set': {1, 1, 2, 3, 2, 5},
+            'dict': {'key_1': 'value_1', 'key_2': 'value_2'},
+            'obj': categorieys(10, 20),
+
             }
     return render(request,'Ambrella/index.html',context=data)
     # // пример передачи параметра 1

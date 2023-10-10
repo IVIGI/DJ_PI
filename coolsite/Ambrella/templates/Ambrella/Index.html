@@ -6,11 +6,19 @@
 </head>
 <body>
 <div>
-    <h1> {{title|upper| cut:' ' | cut:'А'  }} </h1>
-    <h1> {{menu.1}} </h1>
-    <p> {{float}} </p>
-    <p> {{value|default:"nothing"}}</p>
+    <h1> {{title|upper| cut:' ' | cut:'А'  }} </h1> <p> Все заглавные буквы и удалить пробел и буквы А</p>
+    <h1> {{menu.1|upper}} </h1> <p> Слово Заглавными буквами</p>
+    <p> {{float|add:"50"}} </p> <p> Добавить 50 </p>
+    <p> {{value|default:"nothing"}}</p> <p> по Умолчанию Ничего </p>
     <p> {{url}} </p>
+    <p> {{dict.key_1}} </p> <p> Вывод Key1</p>
+    <p> {{set|linenumbers}} </p> <p> список вывода 1. 2. и т.д.</p>
+    <p> {{int|floatformat}} </p> <p> Перевод в float format</p>
+    <p> {{list|length}} </p> <p> Размерность </p>
+    <p> {{bool|filesizeformat}} </p> <p> Формат размера файла</p>
+    <p> {{tup|iriencode}} </p> <p> Перевод в IRI код</p>
+    <p> {{obj}} </p>
+
 </div>
 
 </body>
