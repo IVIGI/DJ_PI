@@ -9,7 +9,36 @@ from django.template.loader import render_to_string
 
 
 
-menu = ['О сайте', 'Войти', 'Обратная связь']# Create your views here.
+menu = [{'title': 'О сайте', 'url_name': 'about'},
+        {'title': 'Домашняя', 'url_name': 'home'},
+        {'title': 'Красивый css', 'url_name': 'cub'},
+        ]
+def show_spisok(request, spisok_id):
+    return HttpResponse(f"Отображение списка студента = {spisok_id}")
+
+spisok_db = [
+    {'id' : 1, 'title' : 'Игнатьев А.А.', 'content': '28.06.2001','is_published': True},
+    {'id': 2, 'title': 'Коновалов А.', 'content': '2004','is_published': True},
+    {'id': 3, 'title': 'Тузов А.', 'content': '2004','is_published': True},
+    {'id': 4, 'title': 'Ковалёв А.', 'content': '2002','is_published': True},
+    {'id': 5, 'title': 'Король Б.', 'content': '2002','is_published': True},
+    {'id': 6, 'title': 'Снытко Р.', 'content': '2004','is_published': True},
+    {'id': 7, 'title': 'Лебедев Д.', 'content': '2004','is_published': False},
+    {'id': 8, 'title': 'Мартыненко Д.', 'content': '2005','is_published': True},
+    {'id': 9, 'title': 'Лелетко П.', 'content': '2001','is_published': True},
+    {'id': 10, 'title': 'Селебин А.', 'content': '2004','is_published': True},
+]
+
+data_db = [
+    {'id': 1, 'title': 'Анджелина Джоли', 'content': 'Биография Анджелины Джоли', 'is_published': True},
+    {'id': 2, 'title': 'Марго Робби', 'content': 'Биография Марго Робби', 'is_published': False},
+    {'id': 3, 'title': 'Джулия Робертс', 'content': 'Биография Джулия Робертс', 'is_published': True},
+]
+
+class MyClass:
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
 def index(request):
     # t = render_to_string('Ambrella/index.html')
     # return HttpResponse(t) // Пример ниже !!!!  можно так как 1 пример, можно как ниже!
@@ -23,14 +52,33 @@ def index(request):
             'float': 28.56,
             'list': [1, 2, 'abc', True],
             'set': {1, 1, 2, 3, 2, 5},
-            'dict': {'key_1': 'value_1', 'key_2': 'value_2'},
-            'obj': categorieys(10, 20),
+            'dict': {'Key_1': 'value_1|', 'key_2': 'value_2'},
+            'obj': MyClass(10,20),
+            'get':(request.GET),
+            'posts': data_db,
+            'spisok':spisok_db,
 
             }
+
     return render(request,'Ambrella/index.html',context=data)
     # // пример передачи параметра 1
     # return render(request, 'Ambrella/index.html', {'title': 'Главная страница'})
-
+def about(request):
+    return render(request, 'Ambrella/about.html', context={'menu': menu})
+def cub(request):
+    return render(request, 'Ambrella/3D_kub.html', context={'menu': menu, 'title':'красивый css'})
+def post_detail(request):
+    get_vuv = dict(request.GET)
+    if get_vuv:
+        print(request.GET)
+        for k,v in get_vuv.items():
+            print(k,v)
+        response_string = ''
+        for kluch, value in get_vuv.items():
+            response_string += f'{kluch} = {value[0]} |'
+        return HttpResponse(response_string)
+    else:
+        return HttpResponse("GET Empty")
 def categorieys(request,cat_id):
     return HttpResponse(f"<h1> статьи под номером {cat_id} </h1>")
 def index1(request):
@@ -115,3 +163,48 @@ def AccessВenied(request, exception):
 
 def ProcessingFail(request, exception):
     return HttpResponseNotFound(f"<h1> Неверный запрос <br> {exception}</h1>")
+
+def about(request):
+    return render(request, 'Ambrella/about.html', context={'menu': menu, 'title': 'О программе'})
+
+def split_line(line, sep):
+    if not line:
+        return ['']
+    list1=[]
+    strok=""
+    cavuchka = False
+    for i in line:
+        if '"'  in i:
+            cavuchka = not cavuchka
+        if sep in i and cavuchka == False :
+            list1.append(strok.replace('"',''))
+            strok = ""
+        else:
+            strok += i
+    list1.append(strok.replace('"',''))
+    return list1
+
+def read_split_line_tests():
+    example_1_line = 'Александр Александрович Александров,,2005,11'
+    example_1_sep = ','
+    example_1_res = ['Александр Александрович Александров', '', '2005', '11']
+
+    print(split_line(example_1_line, example_1_sep), example_1_res)
+
+    example_2_line = 'Евгений Сергеевич Дёмин;;'
+    example_2_sep = ';'
+    example_2_res = ['Евгений Сергеевич Дёмин', '', '']
+
+    print(split_line(example_2_line, example_2_sep), example_2_res)
+
+    example_3_line = 'Анна Павловна Иванова,"[запись 1, запись 2, запись 3]", ,2'
+    example_3_sep = ','
+    example_3_res = ['Анна Павловна Иванова', '[запись 1, запись 2, запись 3]', ' ', '2']
+
+    print(split_line(example_3_line, example_3_sep), example_3_res)
+
+    print('Все тесты прошли успешно!')
+
+def split_line1(request):
+
+    return HttpResponse(f"<h1></h1>")

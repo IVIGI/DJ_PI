@@ -1,0 +1,65 @@
+body {
+			background: linear-gradient(to right, #ff00ff, #00ff00, #ffff00);
+			background-size: 200% 100%;
+			animation: gradient 10s ease infinite;
+		}
+
+		@keyframes gradient {
+			0% { background-position: 0% 50%; }
+			50% { background-position: 100% 50%; }
+			100% { background-position: 0% 50%; }
+		}
+
+		.cube {
+			width: 200px;
+			height: 200px;
+			margin: 100px auto;
+			position: relative;
+			transform-style: preserve-3d;
+			transform-origin: center;
+			transform: rotateX(30deg) rotateY(45deg);
+			animation: rotate 10s linear infinite;
+		}
+
+		@keyframes rotate {
+			0% { transform: rotateX(30deg) rotateY(45deg); }
+			100% { transform: rotateX(390deg) rotateY(405deg); }
+		}
+
+		.front, .back, .right, .left, .top, .bottom {
+			position: absolute;
+			width: 200px;
+			height: 200px;
+			line-height: 200px;
+			text-align: center;
+		}
+
+		.front {
+			background: lime;
+			transform: translateZ(100px);
+		}
+
+		.back {
+			background: lime;
+			transform: translateZ(-100px) rotateY(180deg);
+		}
+
+		.right {
+			background: limegreen;
+			transform: rotateY(-90deg) translateZ(100px);
+		}
+
+		.left {
+			background: limegreen;
+			transform: rotateY(90deg) translateZ(100px);
+		}
+
+		.top {
+			background: darkgreen;
+			transform: rotateX(90deg) translateZ(100px);
+		}
+
+		.bottom {
+			background: darkgreen;
+			transform: rotateX(-90deg) translateZ(100px);
+		}
