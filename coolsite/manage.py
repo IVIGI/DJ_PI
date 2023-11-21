@@ -17,6 +17,14 @@ def main():
         ) from exc
     execute_from_command_line(sys.argv)
 
+''' DB
+python manage.py makemigrations     создание миграций
+python manage.py sqlmigrate women 0001  просмотор миграций на sql
+python manage.py migrate выполнение миграции
+python manage.py shell_plus --print-sql
+'''
+
+
 
 if __name__ == '__main__':
     main()

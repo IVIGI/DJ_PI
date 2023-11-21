@@ -5,6 +5,7 @@
     <title>Title</title>
 </head>
 <body>
+{% include 'Ambrella/Includes/header.html'%}
 <ul>
   {% for m in menu%}
   <li>
@@ -14,9 +15,13 @@
 </ul>
 <h1> {{title}}</h1>
 
+
+
 {%block content1%}
 
 {%endblock%}
+
+{% include 'Ambrella/Includes/footer.html'%}
 
 </body>
 </html>

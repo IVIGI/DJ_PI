@@ -1,5 +1,7 @@
 {%extends 'base.html'%}
 {%block content1%}
+{% load static %}
+<link type="text/css" href="{% static 'Ambrella/css/IMG.css' %}" rel="stylesheet">
 <br>
 <hr>
 <div>
@@ -43,7 +45,7 @@
             <h2> {{s.title}}</h2>
             <p>{{ s.content }}</p>
             {% if not forloop.last %}
-            <p ><a href="{% url 'spisok' s.id %}">Смотреть список</a></p>
+            <p ><a class="round" href="{% url 'spisok' s.id %}">Посмотреть студента</a></p>
             <hr>
             {% endif %}
         </li>

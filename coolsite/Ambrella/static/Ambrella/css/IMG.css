@@ -1,0 +1,11 @@
+.style img {
+           width: 200px;
+		   height: 200px;
+            }
+.round  {
+    border-radius: 100px;
+    border: 3px solid black;
+    box-shadow: 0 0 7px #666;
+    width: 200px;
+    height: 200px;
+   }

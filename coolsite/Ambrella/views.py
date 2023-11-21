@@ -100,16 +100,16 @@ def categorieys4 (request,cat4_id):
     return HttpResponse(f"<h1> Документация о наработках № {cat4_id} </h>")
 def spisok(request,number):
     dir={
-        "1":['Игнатьев А.А. 28.06.2001'],
-        "2": ['Коновалов А. 2004'],
-        "3": ['Тузов А. 2004'],
-        "4": ['Ковалёв А. 2002'],
-        "5": ['Король Б. 2002'],
-        "6": ['Снытко Р. 2004'],
-        "7": ['Лебедев Д. 2004'],
-        "8": ['Мартыненко Д.Д 2005'],
-        "9": ['Лелетко П. 2001'],
-        "10": ['Селебин А. 2004'],
+        "1":['Игнатьев А.А. 28.06.2001 <img src=https://w.forfun.com/fetch/02/0261dfae0e4904627653a2d6d5de1a4e.jpeg'],
+        "2": ['Коновалов А. 2004 <img src=https://mykaleidoscope.ru/x/uploads/posts/2022-10/1666328852_41-mykaleidoscope-ru-p-dovolnaya-morda-kota-krasivo-45.jpg'],
+        "3": ['Тузов А. 2004 <img src=https://proprikol.ru/wp-content/uploads/2020/12/kartinki-ryzhih-kotov-9.jpg'],
+        "4": ['Ковалёв А. 2002 <img src=https://w-dog.ru/wallpaper/kot-lezhit-polosatyj/id/257996/'],
+        "5": ['Король Б. 2002 <img src=https://sun9-26.userapi.com/brJc8tFokZGUFL2FUnoBZlTTDpCKh-Uk9r94QQ/WRQsHCfuLdM.jpg'],
+        "6": ['Снытко Р. 2004 <img src=https://fikiwiki.com/uploads/posts/2022-02/1645000704_9-fikiwiki-com-p-krasivie-kartinki-kotov-9.jpg'],
+        "7": ['Лебедев Д. 2004 <img src=https://koshka.top/uploads/posts/2021-11/1637369710_37-koshka-top-p-ochen-smeshnogo-kota-40.jpg'],
+        "8": ['Мартыненко Д.Д 2005 <img src=https://mykaleidoscope.ru/x/uploads/posts/2022-09/thumbs/1663579228_15-mykaleidoscope-ru-p-veselie-koshechki-krasivo-16.jpg'],
+        "9": ['Лелетко П. 2001 <img src=https://i.pinimg.com/originals/fa/9e/1a/fa9e1a7d27d7cde3b3e62f17800813ec.jpg'],
+        "10": ['Селебин А. 2004 <img src=https://koshka.top/uploads/posts/2021-12/1639899111_21-koshka-top-p-samie-smeshnie-kotov-21.jpg'],
                }
     if number > 0 and number < 10:
         return HttpResponse(f"<h1> Студент {dir[str(number)][0]} найден </h1>")
@@ -208,3 +208,10 @@ def read_split_line_tests():
 def split_line1(request):
 
     return HttpResponse(f"<h1></h1>")
+
+def students(request,student):
+
+    data = {'title': 'Профиль студента',
+            'menu':menu,
+            }
+    return render(request, 'Ambrella/student.html',data)
