@@ -28,7 +28,8 @@ urlpatterns = [
     path('date/<int:datee>/',date, name = 'date'),
     path('articles/<yyyy:year>/', year_archive, name = 'year'),
     path('post/', post_detail, name = 'post'),
-    path('students/<slug:student>/', students, name = 'student_slug'),
+    path('students', students, name='students'),
+    path('students/<slug:student_slug>/', student, name = 'student'),
 
 ]
 

@@ -1,0 +1,14 @@
+{%extends 'base.html'%}
+{%block content1%}
+<br>
+{%include 'Ambrella/includes/nav.html' only %}
+<ul>
+    {%for p in posts %}
+    <li>
+        <h2> {{p.fio}}</h2>
+        <p> <a href="{{p.get_absolute_url}}">Посмотреть профиль стундента</a></p>
+    </li>
+    {%endfor%}
+</ul>,
+
+{%endblock%}

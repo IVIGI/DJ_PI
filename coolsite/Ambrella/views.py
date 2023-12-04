@@ -3,15 +3,16 @@ from contextvars import Context
 from django.contrib.sites import requests
 from django.core.exceptions import SuspiciousOperation, PermissionDenied
 from django.http import HttpResponse, HttpResponseNotFound, Http404
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.template.defaultfilters import slugify
 from django.template.loader import render_to_string
 
-
+from Ambrella.models import Students
 
 menu = [{'title': 'О сайте', 'url_name': 'about'},
         {'title': 'Домашняя', 'url_name': 'home'},
         {'title': 'Красивый css', 'url_name': 'cub'},
+        {'title': 'Список студентов', 'url_name': 'students'},
         ]
 def show_spisok(request, spisok_id):
     return HttpResponse(f"Отображение списка студента = {spisok_id}")
@@ -209,9 +210,17 @@ def split_line1(request):
 
     return HttpResponse(f"<h1></h1>")
 
-def students(request,student):
-
+def students(request):
+    posts = Students.objects.all()
+    data = {'title': 'Список студентов ',
+            'menu':menu,
+            'posts':posts,
+            }
+    return render(request, 'Ambrella/students.html',data)
+def student(request,student_slug):
+    post = get_object_or_404(Students,slug=student_slug)
     data = {'title': 'Профиль студента',
             'menu':menu,
+            'post': post,
             }
     return render(request, 'Ambrella/student.html',data)
